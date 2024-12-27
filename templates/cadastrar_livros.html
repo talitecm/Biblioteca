@@ -1,4 +1,44 @@
 {%extends 'base.html'%}
 {% block conteudo %}
-<!-- Inserir conteúdo aqui-->
+<div class="container-cad-livros">
+    <div class="form-container">
+        <h1>Cadastro de Livro</h1>
+        <form action="/cadastrar" method="POST" class="form-cad-livro">
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" name="titulo" placeholder="Digite o título do livro" required>
+    
+            <label for="autor">Autor</label>
+            <input type="text" id="autor" name="autor" placeholder="Digite o nome do autor" required>
+    
+            <label for="ano">Ano de Lançamento</label>
+            <input type="number" id="ano" name="ano" placeholder="Digite o ano de lançamento" required>
+    
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" name="isbn" placeholder="Digite o ISBN do livro" required>
+
+            <!-- Container para os botões -->
+            <div class="botao-container">
+                <button type="submit" class="btn-cadastrar">Cadastrar</button>
+                <button type="button" class="btn-cancelar" onclick="window.location.href='index.html'">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Pop-up de confirmação -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Livro Cadastrado com Sucesso!</h2>
+            <button class="btn-cadastrar-novo" onclick="window.location.reload()">Cadastrar Novo</button>
+            <button class="btn-inicio" onclick="window.location.href='index.html'">Início</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Exibir o pop-up após o envio do formulário
+    document.querySelector('.form-cad-livro').addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio real do formulário
+        document.getElementById('popup').style.display = 'block'; // Exibe o pop-up
+    });
+</script>
 {% endblock %}
