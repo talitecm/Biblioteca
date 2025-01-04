@@ -1,4 +1,18 @@
 {%extends 'base.html'%}
 {% block conteudo %}
-<!-- Inserir conteúdo aqui-->
+<div class="container-index">
+    <!-- Seção com a imagem -->
+    <div class="section-image">
+        <img src="../static/img/books.jpg" alt="Livros">
+    </div>
+
+    <!-- Seção com os botões -->
+    <div class="section-buttons">
+        <button class="btn-action" onclick="window.location.href='/reservar_livros'">Reservar Livro</button>
+        <button class="btn-action" onclick="window.location.href='/consultar_livros'">Consultar Livro</button>
+        <button class="btn-action" onclick="window.location.href='/cadastrar_livros'">Cadastrar Livro</button>
+        <button class="btn-action" onclick="window.location.href='/editar_livros'">Atualizar Livro</button>
+    </div>
+</div>
+
 {% endblock %}
