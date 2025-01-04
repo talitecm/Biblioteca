@@ -1,34 +1,31 @@
-{%extends 'base.html'%}
+{%extends 'base-login.html'%}
 {% block conteudo %}
 
-<h2>Registre-se</h2>
+<div class="div-cadastro-user">
+    <h2>Cadastre-se</h2>
+    <form action="/" class="form-cadastro-user">
+        <!-- Nome -->
+        <label for="nome" class="label-cad-user">Nome:</label>
+        <input type="text" class="input-cad-user" name="nome" placeholder="Digite seu nome completo" required>
+        <br>
+        <!-- E-mail -->
+        <label for="email" class="label-cad-user">E-mail:</label>
+        <input type="email" class="input-cad-user" name="email" placeholder="Digite seu e-mail" required>
+        <br>
+        <!-- CPF -->
+        <label for="cpf" class="label-cad-user">CPF:</label>
+        <input type="text" class="input-cad-user" name="cpf" placeholder="Digite seu CPF" required>
+        <br>
+        <!-- Endereço -->
+        <label for="endereco" class="label-cad-user">Endereço:</label>
+        <input type="text" class="input-cad-user" name="endereco" placeholder="Digite seu endereco" required>
+        <br>
+        <!-- Senha -->
+        <label for="senha" class="label-cad-user">Senha:</label>
+        <input type="password" class="input-cad-user" name="senha" placeholder="Crie uma senha" required>
+        <br>
+        <div class="div-btn-form"><button type="submit" onclick="window.location.href='/index'">Registrar</button></div>
+    </form>
+</div>
 
-<form action="/">
-    <!-- Nome -->
-    <label for="nome">Nome:</label>
-    <input type="text" id="" name="" placeholder="Digite seu nome completo" required>
-    <br>
-
-    <!-- usuário -->
-    <label for="usuario">Usuário:</label>
-    <input type="text" id="" name="" placeholder="Escolha um nome de usuário" required>
-    <br>
-
-    <!-- E-mail -->
-    <label for="email">E-mail:</label>
-    <input type="email" id="" name="" placeholder="Digite seu e-mail" required>
-    <br>
-
-    <!-- Senha -->
-    <label for="senha">Senha:</label>
-    <input type="password" id="" name="" placeholder="Crie uma senha" required>
-    <br>
-
-    <!-- Confirmação da senha -->
-    <label for="senha">Confirmar Senha:</label>
-    <input type="password" id="" name="" placeholder="Confirme sua senha" required>
-
-    <button type="submit">Registrar</button>
-
-</form>
 {% endblock %}

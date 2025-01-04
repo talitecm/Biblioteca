@@ -143,8 +143,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 88vh;
-    margin: 0;
+    height: 80vh;
+    margin-top: 2rem;
 }
 
 /* Estilos da seção de login */
@@ -155,6 +155,7 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     width: 100%;
+    height: 70vh;
     text-align: center;
 }
 
@@ -407,4 +408,252 @@ h1 {
 .about-section p {
     margin: 10px 0;
     font-size: 1.1rem;
+}
+
+/* ----------------- Registrar Usuário ----------------- */
+
+.div-cadastro-user {
+    display: flex;
+    flex-direction: column; /* Define layout em colunas */
+    justify-content: center;
+    align-items: center;
+    height: 75vh; /* Altura total da viewport */
+    background-color: #f4f4f9;
+    margin: 1rem auto auto auto;
+}
+
+/* Título */
+.div-cadastro-user h2 {
+    margin-top: 1em; /* Espaço abaixo do título */
+    font-size: 2rem;
+    color: #2980b9;
+    text-align: center;
+}
+
+/* Formulário */
+.div-cadastro-user {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+}
+
+/* Labels */
+.label-cad-user{
+    font-size: 1rem;
+    color: #34495e;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Campos de Entrada */
+.input-cad-user {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.label-cad-user:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Formulário */
+.form-cadastro-user {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Botão */
+.form-cadastro-user button {
+    display: inline-block; /* Garante que o botão respeite o alinhamento */
+    margin-top: 20px; /* Espaçamento superior do botão */
+    width: 50%; /* Define a largura relativa para centralizar */
+    padding: 12px;
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-cadastro-user button:hover {
+    background-color: #3498db;
+}
+
+.div-btn-form{
+    text-align: center; /* Alinha todos os elementos no centro horizontal */
+}
+
+/* ----------------- PERFIL USUARIO ----------------- */
+
+/* Container principal */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    padding: 20px;
+    background-color: #f4f4f9;
+    color: #34495e;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Cabeçalho do perfil */
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    font-size: 2rem;
+    color: #2980b9;
+    margin-bottom: 5px;
+}
+
+.user-role {
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+
+/* Informações do perfil */
+.profile-info {
+    width: 100%;
+    max-width: 500px;
+    height: 50vh;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.profile-info h2 {
+    font-size: 1.5rem;
+    color: #2980b9;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #bdc3c7;
+    padding-bottom: 10px;
+}
+
+.profile-info p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+/* Botões de ação */
+.profile-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-action {
+    width: 150px;
+    height: 70px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #2980b9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-action.logout {
+    background-color: #e74c3c;
+}
+
+.btn-action:hover {
+    background-color: #3498db;
+}
+
+.btn-action.logout:hover {
+    background-color: #c0392b;
+}
+
+/* ----------------- EDITAR PERFIL USUARIO ----------------- */
+
+/* Container principal */
+.edit-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+/* Título */
+.edit-profile-container h2 {
+    font-size: 2rem;
+    color: #2980b9;
+    margin-bottom: 20px;
+}
+
+/* Formulário */
+.form-edit-profile {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+}
+
+/* Labels */
+.label-edit {
+    font-size: 1rem;
+    color: #34495e;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Campos de entrada */
+.input-edit {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.input-edit:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Botão Atualizar */
+.btn-update {
+    width: 100%;
+    padding: 12px;
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-update:hover {
+    background-color: #3498db;
 }

@@ -1,6 +1,5 @@
-{%extends 'base.html'%}
+{%extends 'base-login.html'%}
 {% block conteudo %}
-
 <div class="div-login">
     <section class="login-container">
         <h1 class="library-title">FONTE DO SABER</h1>
@@ -9,32 +8,13 @@
         <form action="/login" method="POST" class="login-form">
             <label for="email">E-mail</label>
             <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-    
+
             <label for="password">Senha</label>
             <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
-    
-            <button type="submit" class="btn-login">Entrar</button>
+
+            <button type="submit" class="btn-login" onclick="window.location.href='/home'">Entrar</button>
         </form>
         <p>Não tem uma conta? <a href="/registrar_usuario" class="btn-cadastro">Cadastre-se</a></p>
     </section>
 </div>
-
-<!-- <h2>Login</h2>
-
-<form action="/">
-    Campo usuário 
-    <label for="usuario">Usuário:</label>
-    <input type="text" id="" name="" placeholder="Digite seu usuário" required>
-    <br>
-
-    Campo senha 
-    <label for="senha">Senha:</label>
-    <input type="password" id="" name="" placeholder="Digite sua senha" required>
-
-    Botão para enviar as informações 
-    <button type="submit">Entrar</button>
-</form>
-<p class="">
-    Não tem uma conta? <a href="/registrar_usuario">Registre-se aqui</a>.
-</p> -->
 {% endblock %}
