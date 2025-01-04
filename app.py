@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
-from utilidades import db #Importando bando de dados.
+from utilidades import * #Importando bando de dados.
+from models.usuarios import * #importando a classe
 import os #Biblioteca para ler arquivos como se fosse um "Sistema Operacional"
 from dotenv import load_dotenv #Biblioteca para trabalhar com arquivos env
 from flask_sqlalchemy import SQLAlchemy #Biblioteca necessária para mapear classes Python para tabelas do banco de dados relacional
@@ -28,9 +29,25 @@ def home():
     return render_template("home.html")
 
 #Definindo rota registro de usuário
-@app.route('/registrar_usuario')
+@app.route('/registrar_usuario', methods = ["get","post"])
 def registro():
     return render_template("registrar_usuario.html")
+
+#Definindo rota para Usuário cadastrado
+@app.route('/usuario_cadastrado', methods = ["get","post"])
+def usuario_cadastrado():
+    nome = request.form.get('nome')
+    cpf = request.form.get('cpf')
+    endereco = request.form.get('endereco')
+    email = request.form.get('email')
+    senha = request.form.get('senha')
+
+    novo_usuario = Usuario(nome=nome, cpf=cpf, endereco=endereco, email=email, senha=senha)
+    
+    db.session.add(novo_usuario)
+    db.session.commit()
+
+    return render_template("login.html", usuario=novo_usuario)
 
 #Definindo rota sobre
 @app.route('/sobre')
