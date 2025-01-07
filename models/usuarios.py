@@ -1,7 +1,8 @@
+from flask_login import UserMixin
 from utilidades import *
 #from flask_login import UserMixin
 
-class Usuario(db.Model):
+class Usuario(db.Model, UserMixin):
     __tablename__="usuarios"
     nome = db.Column(db.String(100), nullable=False)
     cpf = db.Column(db.String(11), primary_key = True)
@@ -11,4 +12,4 @@ class Usuario(db.Model):
     data_cad = db.Column(db.Date, nullable=False)
 
     def get_id(self): #Função para pegar o identificador do usuário (necessário para login)
-        return self.cpf
+        return self.email

@@ -13,8 +13,9 @@
             <ul class="menu">
                 <li><a href="/home">Home</a></li>
             </ul>
+            <p>Bem-vindo(a), {{ current_user.nome }}!</p>
             <div class="btn-container">
-                <a href="/" class="btn-login">Logout</a>
+                <a href="/logout" class="btn-login">Logout</a>
                 <span class="divider"></span>
                 <a href="/perfil_usuario" class="btn-cadastro">Perfil</a>
             </div>

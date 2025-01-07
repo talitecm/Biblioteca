@@ -4,15 +4,16 @@
     <section class="login-container">
         <h1 class="library-title">FONTE DO SABER</h1>
         <h2>Bem-vindo(a) de volta!</h2>
+        <h3 style="color: red;">{{msg}}</h3>
         <p>Faça login para acessar o universo de conhecimento.</p>
-        <form action="/login" method="POST" class="login-form">
-            <label for="email">E-mail</label>
+        <form action="/usuario_logado" method="POST" class="login-form" method="post">
+            <label for="">E-mail</label>
             <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
 
-            <label for="password">Senha</label>
-            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+            <label for="">Senha</label>
+            <input type="password" id="password" name="senha" placeholder="Digite sua senha" required>
 
-            <button type="submit" class="btn-login" onclick="window.location.href='/home'">Entrar</button>
+            <button type="submit" class="btn-login" >Entrar</button>
         </form>
         <p>Não tem uma conta? <a href="/registrar_usuario" class="btn-cadastro">Cadastre-se</a></p>
     </section>
