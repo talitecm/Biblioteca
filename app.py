@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from utilidades import * #Importando bando de dados.
 from models.usuarios import * #importando a classe
 import os #Biblioteca para ler arquivos como se fosse um "Sistema Operacional"
@@ -32,6 +32,26 @@ def load_user(email):
 def login():
     return render_template("login.html")
 
+#Excluir perfil do usuario
+@app.route('/excluir_perfil', methods=['POST'])
+@login_required
+def excluir_perfil():
+    # Obtendo o usuário atual
+    usuario = current_user
+    
+    # Removendo o usuário do banco de dados
+    db.session.delete(usuario)
+    db.session.commit()
+    
+    # Deslogar o usuário
+    logout_user()
+    
+    # Enviar uma mensagem de sucesso
+    flash("Perfil excluído com sucesso!", "success")
+    
+    # Redirecionar para a página de login
+    return redirect(url_for('login'))
+
 #Definindo rota para verificar login do usuário
 @app.route('/usuario_logado', methods = ["get", "post"])
 def usuario_logado():
@@ -51,7 +71,7 @@ def usuario_logado():
         msg = "Erro nas credenciais"
         return render_template("login.html", msg = msg)
 
-#definindo rota para deslogar
+#definindo rota para logout
 @app.route('/logout', methods = ["get", "post"]) #Rota para deslogar usuário
 @login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
 def logout():
@@ -99,7 +119,28 @@ def contato():
 #Definindo rota para cadastrar livros
 @app.route('/cadastrar_livros', methods = ["get", "post"])
 def cadastrar_livro():
-    return render_template("cadastrar_livros.html")
+    return render_template("cadastrar_livros")
+    
+@app.route('/livro_cadastrado', methods=["POST"])
+def livro_cadastrado():
+    try:
+        titulo = request.form.get('titulo')
+        autor = request.form.get('autor')
+        ano = request.form.get('ano')
+
+        # Conversão do ano para formato de data
+        ano_lancamento = int(ano)
+
+        # Criando o objeto Livro
+        novo_livro = Livro(titulo=titulo, autor=autor, ano_lancamento=ano_lancamento)
+
+        # Adicionando ao banco de dados
+        db.session.add(novo_livro)
+        db.session.commit()
+
+        return redirect('catalogo.html')  # Redireciona para o catálogo de livros
+    except Exception as e:
+        return f"Erro ao cadastrar livro: {e}"
 
 #Definindo rota para consultar livros
 @app.route('/catalogo', methods = ["get", "post"])

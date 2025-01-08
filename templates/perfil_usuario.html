@@ -10,11 +10,12 @@
     <!-- Informações do perfil -->
     <div class="profile-info">
         <h2>Informações Pessoais</h2>
-        <p><strong>Nome completo:</strong> João da Silva</p>
-        <p><strong>CPF:</strong>123.456.789-00</p>
-        <p><strong>Usuário:</strong> joaosilva</p>
-        <p><strong>E-mail:</strong> joao.silva@email.com</p>
-        <p><strong>Endereço:</strong>Rua dos bobos, Nº 0</p>
+        <p><strong>Nome completo:</strong> {{ current_user.nome }}</p>
+        <p><strong>CPF:</strong> {{ current_user.cpf }}</p>
+        <p><strong>Usuário:</strong> {{ current_user.email }}</p>
+        <p><strong>Senha:</strong> {{ current_user.senha }}</p>
+        <p><strong>E-mail:</strong> {{ current_user.email }}</p>
+        <p><strong>Endereço:</strong> {{ current_user.endereco }}</p>
     </div>
 
     <!-- Ações -->
