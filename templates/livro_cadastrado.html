@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="container-cad-livros">
+    <h1>Cadastro de Livro</h1>
+    <div id="popup" class="popup" style="display: block;"> <!-- Pop-up visível ao carregar -->
+        <div class="popup-content">
+            <h2>Livro "{{ novo_livro.titulo }}" cadastrado com sucesso!</h2>
+            <button class="btn-cadastrar-novo" onclick="window.location.href='/cadastrar_livros'">Cadastrar Novo</button>
+            <button class="btn-inicio" onclick="window.location.href='/home'">Início</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Exibir o pop-up após o envio do formulário
+    document.querySelector('.form-cad-livro').addEventListener('submit', function(event) {
+        // Não impede mais o envio do formulário, garantindo que os dados sejam processados no backend
+        setTimeout(() => {
+            document.getElementById('popup').style.display = 'block'; // Exibe o pop-up após o envio
+        }, 500); // Tempo para garantir que o backend tenha processado
+    });
+</script>
+{% endblock %}

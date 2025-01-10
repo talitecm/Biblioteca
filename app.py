@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from utilidades import * #Importando bando de dados.
 from models.usuarios import * #importando a classe
+from models.livros import *
 import os #Biblioteca para ler arquivos como se fosse um "Sistema Operacional"
 from dotenv import load_dotenv #Biblioteca para trabalhar com arquivos env
 from flask_sqlalchemy import SQLAlchemy #Biblioteca necessária para mapear classes Python para tabelas do banco de dados relacional
@@ -119,7 +120,7 @@ def contato():
 #Definindo rota para cadastrar livros
 @app.route('/cadastrar_livros', methods = ["get", "post"])
 def cadastrar_livro():
-    return render_template("cadastrar_livros")
+    return render_template("cadastrar_livros.html")
     
 @app.route('/livro_cadastrado', methods=["POST"])
 def livro_cadastrado():
@@ -127,34 +128,50 @@ def livro_cadastrado():
         titulo = request.form.get('titulo')
         autor = request.form.get('autor')
         ano = request.form.get('ano')
+        isbn = request.form.get('isbn')
 
         # Conversão do ano para formato de data
         ano_lancamento = int(ano)
 
         # Criando o objeto Livro
-        novo_livro = Livro(titulo=titulo, autor=autor, ano_lancamento=ano_lancamento)
+        novo_livro = Livro(titulo=titulo, autor=autor, ano_lancamento=ano_lancamento, isbn = isbn)
 
         # Adicionando ao banco de dados
         db.session.add(novo_livro)
         db.session.commit()
 
-        return redirect('catalogo.html')  # Redireciona para o catálogo de livros
+        return render_template('livro_cadastrado.html', novo_livro = novo_livro)  # Redireciona para o catálogo de livros
     except Exception as e:
         return f"Erro ao cadastrar livro: {e}"
 
 #Definindo rota para consultar livros
 @app.route('/catalogo', methods = ["get", "post"])
+@login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
 def catalogo():
-    return render_template("catalogo.html")
+    livros = Livro.query.all()
+    return render_template('catalogo.html', livros=livros)
 
 #Definindo rota para editar livros
 @app.route('/editar_livros', methods = ["get", "post"])
+@login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
+
 def editar_livro():
     return render_template("editar_livros.html")
 
+@app.route('/excluir_livro/<int:id>', methods=['get', "post"])
+def excluir_livro(id):
+    livro = Livro.query.get(id)  # Tenta buscar o livro pelo ID
+    if livro:
+        db.session.delete(livro)  # Marca para exclusão
+        db.session.commit()  # Confirma a exclusão no banco de dados
+        return redirect(url_for('catalogo'))  # Redireciona para o catálogo
+    else:
+        return "Livro não encontrado", 404
+
+
 #Definindo rota para o perfil do usuário
-@login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
 @app.route('/perfil_usuario', methods = ["get", "post"])
+@login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
 def perfil_usuario():
     return render_template("perfil_usuario.html")
 

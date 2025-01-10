@@ -1,4 +1,62 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
+
 {% block conteudo %}
-<!-- Inserir conteúdo aqui-->
+<div class="container-catalogo">
+    <h1>Catálogo de Livros</h1>
+
+    <!-- Lista de livros -->
+    <div id="livros-lista" class="livros-lista">
+        {% for livro in livros %}
+        <div class="livro-item">
+            <h3>{{ livro.titulo }}</h3>
+            <p><strong>Autor:</strong> {{ livro.autor }}</p>
+            <p><strong>Ano de Lançamento:</strong> {{ livro.ano_lancamento }}</p>
+            <p><strong>ISBN:</strong> {{ livro.isbn }}</p>
+
+            <div class="livro-botoes">
+                <button class="btn-editar" data-id="{{ livro.idlivro }}" onclick="editarLivro(this)">Editar</button>
+                <button class="btn-alugar" data-id="{{ livro.idlivro }}" onclick="alugarLivro(this)">Alugar</button>
+                <a href="{{ url_for('excluir_livro', id=livro.idlivro) }}">
+                    <button class="btn-excluir" data-id="{{ livro.idlivro }}" onclick="excluirLivro(this)">Excluir</button>
+                </a>
+           </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Botão para alternar entre lista e quadrado -->
+<button class="btn-trocar-layout" onclick="alternarLayout()">⇅</button>
+
+<script>
+    
+    // Função para alternar entre os layouts
+    function alternarLayout() {
+        const lista = document.getElementById('livros-lista');
+        lista.classList.toggle('layout-quadrado');
+    }
+
+    function editarLivro(button) {
+        var livroId = button.getAttribute('data-id');
+        console.log('Editar livro com ID:', livroId);
+        // Lógica para editar o livro
+    }
+
+    function alugarLivro(button) {
+        var livroId = button.getAttribute('data-id');
+        console.log('Alugar livro com ID:', livroId);
+        // Lógica para alugar o livro
+    }
+
+    function excluirLivro(button) {
+        var livroId = button.getAttribute('data-id');
+        console.log('Excluir livro com ID:', livroId);
+    }
+
+</script>
+
+
 {% endblock %}
+
+
+

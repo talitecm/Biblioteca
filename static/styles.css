@@ -657,3 +657,158 @@ h1 {
 .btn-update:hover {
     background-color: #3498db;
 }
+
+
+/* Estilos para a lista de livros */
+.container-catalogo {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+/* Layout da lista (disposição padrão) */
+.livros-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.layout-lista .livros-lista {
+    display: block; /* Exibe a lista de livros como uma lista simples */
+}
+
+.layout-quadrado .livros-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Disposição em grid */
+    gap: 20px;
+}
+
+/* Estilo para os itens da lista (livros) */
+.livro-item {
+    display: grid;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.livro-item:hover {
+    transform: scale(1.05);
+}
+
+.livro-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.livro-item p {
+    margin: 5px 0;
+}
+
+/* Estilo para os botões dentro de cada item de livro */
+.livro-botoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.livro-botoes button {
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.livro-botoes button:hover {
+    background-color: #ddd;
+}
+
+.btn-editar {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-editar:hover {
+    background-color: #45a049;
+}
+
+.btn-alugar {
+    background-color: #ff9800;
+    color: white;
+}
+
+.btn-alugar:hover {
+    background-color: #e68900;
+}
+
+.btn-excluir {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-excluir:hover {
+    background-color: #e53935;
+}
+
+/* Estilo para o botão de alternar layout no cantinho */
+.btn-trocar-layout {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-trocar-layout:hover {
+    background-color: #0056b3;
+}
+
+/* ------------------ Estilos para o Layout de Lista ------------------ */
+/* Layout de lista - Exibe os itens como blocos simples */
+.layout-lista .livros-lista {
+    display: block; /* Faz cada item ocupar a largura inteira */
+
+    .livro
+}
+
+/* ------------------ Estilos para o Layout de Quadrados ------------------ */
+/* Layout de quadrados - Exibe os itens em forma de grid */
+.layout-quadrado .livros-lista {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Botão de alternância entre os layouts */
+.btn-trocar-layout {
+    display: inline-block;
+    background-color: #2980b9;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-trocar-layout:hover {
+    background-color: #3498db;
+}
+

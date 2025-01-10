@@ -23,24 +23,5 @@
             </div>
         </form>
     </div>
-    
-    <!-- Pop-up de confirmação -->
-    <div id="popup" class="popup" style="display: none;">
-        <div class="popup-content">
-            <h2>Livro Cadastrado com Sucesso!</h2>
-            <button class="btn-cadastrar-novo" onclick="window.location.reload()">Cadastrar Novo</button>
-            <button class="btn-inicio" onclick="window.location.href='/home'">Início</button>
-        </div>
-    </div>
 </div>
-
-<script>
-    // Exibir o pop-up após o envio do formulário
-    document.querySelector('.form-cad-livro').addEventListener('submit', function(event) {
-        // Não impede mais o envio do formulário, garantindo que os dados sejam processados no backend
-        setTimeout(() => {
-            document.getElementById('popup').style.display = 'block'; // Exibe o pop-up após o envio
-        }, 500); // Tempo para garantir que o backend tenha processado
-    });
-</script>
 {% endblock %}
