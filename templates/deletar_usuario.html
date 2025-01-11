@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-<h1>Deletar Conta</h1>
-<h2>Você está deletando sua conta, por favor, confirme digitando seu e-mail</h2>
-<form action="/usuario_deletado" method="post">
-    <label for="email">E-mail</label>
-    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-    <button type="submit">Confirmar</button>
-</form>
-<button onclick="window.location.href='/perfil_usuario'">Cancelar</button>
+<div class="deletar-usuario-page">
+    <h1 class="deletar-usuario-titulo">Deletar Conta</h1>
+    <h2 class="deletar-usuario-subtitulo">Você está deletando sua conta, por favor, confirme digitando seu e-mail</h2>
+    <form class="deletar-usuario-form" action="/usuario_deletado" method="post">
+        <label class="deletar-usuario-label" for="email">E-mail</label>
+        <input class="deletar-usuario-input" type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+        <button class="deletar-usuario-botao-confirmar" type="submit">Confirmar</button>
+    </form>
+    <button class="deletar-usuario-botao-cancelar" onclick="window.location.href='/perfil_usuario'">Cancelar</button>
+</div>
 {% endblock %}

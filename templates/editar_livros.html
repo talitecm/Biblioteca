@@ -1,20 +1,20 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 {% block conteudo %}
 <div class="container-cad-livros">
     <div class="form-container">
         <h1>Editar Livro</h1>
-        <form action="/catalogo" method="POST" class="form-cad-livro">
+        <form action="{{ url_for('editar_livro', id=livro.idlivro) }}" method="POST" class="form-cad-livro">
             <label for="titulo">Título</label>
-            <input type="text" id="titulo" name="titulo" placeholder="Digite o título do livro" required>
+            <input type="text" id="titulo" name="titulo" value="{{ livro.titulo }}" required>
     
             <label for="autor">Autor</label>
-            <input type="text" id="autor" name="autor" placeholder="Digite o nome do autor" required>
+            <input type="text" id="autor" name="autor" value="{{ livro.autor }}" required>
     
             <label for="ano">Ano de Lançamento</label>
-            <input type="number" id="ano" name="ano" placeholder="Digite o ano de lançamento" required>
+            <input type="number" id="ano" name="ano" value="{{ livro.ano_lancamento }}" required>
     
             <label for="isbn">ISBN</label>
-            <input type="text" id="isbn" name="isbn" placeholder="Digite o ISBN do livro" required>
+            <input type="text" id="isbn" name="isbn" value="{{ livro.isbn }}" required>
 
             <!-- Container para os botões -->
             <div class="botao-container">
@@ -23,21 +23,6 @@
             </div>
         </form>
     </div>
-    
-    <!-- Pop-up de confirmação -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <h2>Livro Editado com Sucesso!</h2>
-            <button class="btn-inicio" onclick="window.location.href='/catalogo'">Voltar</button>
-        </div>
-    </div>
 </div>
 
-<script>
-    // Exibir o pop-up após o envio do formulário
-    document.querySelector('.form-cad-livro').addEventListener('submit', function(event) {
-        event.preventDefault(); // Impede o envio real do formulário
-        document.getElementById('popup').style.display = 'block'; // Exibe o pop-up
-    });
-</script>
 {% endblock %}

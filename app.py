@@ -7,6 +7,7 @@ from dotenv import load_dotenv #Biblioteca para trabalhar com arquivos env
 from flask_sqlalchemy import SQLAlchemy #Biblioteca necessária para mapear classes Python para tabelas do banco de dados relacional
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from datetime import datetime #importando uma forma de pegar a data atual
+import pytz
 app = Flask(__name__)
 
 load_dotenv() #Carrega variáveis do nosso arquivo .flaskenv
@@ -21,7 +22,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = conexao #Criando uma "rota" de comunica�
 db.init_app(app) #Sinaliza que o banco será gerenciado pelo app
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') #Importando a secret key do flaskenv
 lm.init_app(app) #Sinalizando que o loginManager será gerenciado pelo app
-lm.login_view = 'login'  # Redireciona o usuário para a página de login caso não esteja autenticado
 
 # Função para carregar o usuário
 @lm.user_loader
@@ -55,6 +55,7 @@ def excluir_perfil():
 
 #Definindo rota para verificar login do usuário
 @app.route('/usuario_logado', methods = ["get", "post"])
+
 def usuario_logado():
     email = request.form.get('email')
     senha = request.form.get('senha')
@@ -98,7 +99,10 @@ def usuario_cadastrado():
     endereco = request.form.get('endereco')
     email = request.form.get('email')
     senha = request.form.get('senha')
-    data_cad = datetime.now()
+    
+    timezone = pytz.timezone('America/Sao_Paulo')
+    data_cad = datetime.now(timezone)
+
 
     novo_usuario = Usuario(nome=nome, cpf=cpf, endereco=endereco, email=email, senha=senha, data_cad=data_cad)
     
@@ -119,10 +123,12 @@ def contato():
 
 #Definindo rota para cadastrar livros
 @app.route('/cadastrar_livros', methods = ["get", "post"])
+@login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
 def cadastrar_livro():
     return render_template("cadastrar_livros.html")
     
 @app.route('/livro_cadastrado', methods=["POST"])
+@login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
 def livro_cadastrado():
     try:
         titulo = request.form.get('titulo')
@@ -148,17 +154,32 @@ def livro_cadastrado():
 @app.route('/catalogo', methods = ["get", "post"])
 @login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
 def catalogo():
-    livros = Livro.query.all()
+    query = request.args.get('query', '')  # Obtém o termo de pesquisa da URL
+    if query:
+        livros = Livro.query.filter(Livro.titulo.ilike(f"%{query}%")).all()  # Filtra os livros pelo título
+    else:
+        livros = Livro.query.all()  # Carrega todos os livros se não houver pesquisa
     return render_template('catalogo.html', livros=livros)
 
 #Definindo rota para editar livros
-@app.route('/editar_livros', methods = ["get", "post"])
+@app.route('/editar_livros/<int:id>', methods = ["get", "post"])
 @login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
-
-def editar_livro():
-    return render_template("editar_livros.html")
+def editar_livro(id):
+    livro = Livro.query.get(id)
+    
+    if request.method == 'POST':
+        # Atualiza os dados do livro com as informações do formulário
+        livro.titulo = request.form.get('titulo')
+        livro.autor = request.form.get('autor')
+        livro.ano_lancamento = request.form.get('ano')
+        livro.isbn = request.form.get('isbn')
+        db.session.commit()
+        return redirect(url_for('catalogo'))
+    
+    return render_template("editar_livros.html", livro=livro)
 
 @app.route('/excluir_livro/<int:id>', methods=['get', "post"])
+@login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
 def excluir_livro(id):
     livro = Livro.query.get(id)  # Tenta buscar o livro pelo ID
     if livro:
@@ -183,19 +204,20 @@ def editar_perfil():
 @app.route('/perfil_editado', methods=['GET', 'POST'])
 def perfil_editado():
 
-    cpf = request.form.get("cpf")
+    usuario = current_user
 
     novo_nome = request.form.get("novo_nome")  #Pega o novo nome enviado pelo usuário
     novo_cpf = request.form.get("novo_cpf")
+    novo_email = request.form.get("novo_email")
     novo_endereco = request.form.get("novo_endereco")
     nova_senha = request.form.get("nova_senha")
 
-    usuario = Usuario.query.get(cpf)  #Busca um usuário pelo email do usuário
-
-    Usuario.nome = novo_nome  # Atualiza o nome
-    Usuario.cpf = novo_cpf
-    Usuario.endereco = novo_endereco
-    Usuario.senha = nova_senha
+    
+    usuario.nome = novo_nome  # Atualiza o nome
+    usuario.cpf = novo_cpf
+    usuario.email = novo_email
+    usuario.endereco = novo_endereco
+    usuario.senha = nova_senha
     
     db.session.commit()  # Salva a alteração no banco de dados
     
@@ -213,3 +235,15 @@ def usuario_deletado():
     db.session.delete(usuario)  # Deleta o usuário
     db.session.commit()  # Confirma a exclusão no banco de dados
     return render_template("usuario_deletado.html", email=email)
+
+
+#Personalização de rotas de erro
+#Pagina do error 401 (Não autorizado, login não feito)
+@app.errorhandler(401)
+def erro401(error):
+    return render_template('error401.html'), 401
+
+#Pagina do error 404 (Página não existe)
+@app.errorhandler(404)
+def erro401(error):
+    return render_template('error404.html'), 404

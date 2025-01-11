@@ -1,23 +1,10 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-<div class="container-cad-livros">
-    <h1>Cadastro de Livro</h1>
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <h2>Livro "{{ novo_livro.titulo }}" cadastrado com sucesso!</h2>
-            <button class="btn-cadastrar-novo" onclick="window.location.href='/cadastrar_livros'">Cadastrar Novo</button>
-            <button class="btn-inicio" onclick="window.location.href='/home'">Início</button>
-        </div>
-    </div>
+<div class="cadastro-livro-page">
+    <h1 class="cadastro-livro-titulo">Cadastro de Livro</h1>
+    <h2 class="cadastro-livro-subtitulo">Livro "{{ novo_livro.titulo }}" cadastrado com sucesso!</h2>
+    <button class="cadastro-livro-botao" onclick="window.location.href='/cadastrar_livros'">Cadastrar Novo</button>
+    <button class="cadastro-livro-botao" onclick="window.location.href='/home'">Início</button>
 </div>
-
-<script>
-    // Exibir o pop-up após o envio do formulário
-    document.querySelector('.form-cad-livro').addEventListener('submit', function(event) {
-        setTimeout(() => {
-            document.getElementById('popup').style.display = 'block'; // Exibe o pop-up após o envio
-        }, 500);
-    });
-</script>
 {% endblock %}
