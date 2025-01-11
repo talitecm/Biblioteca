@@ -178,15 +178,38 @@ def perfil_usuario():
 @app.route('/editar_perfil', methods=['GET', 'POST'])
 @login_required #Sinalizando que o usuário só pode acessar essa página se fez o login
 def editar_perfil():
-    if request.method == 'POST':
-        # Aqui você pode salvar as informações atualizadas no banco de dados
-        nome = request.form['nome']
-        email = request.form['email']
-        cpf = request.form['cpf']
-        endereco = request.form['endereco']
-        senha = request.form['senha']
-
-        # Retorna à página de perfil do usuário
-        return redirect(url_for('perfil_usuario'))
-
     return render_template('editar_perfil.html')
+
+@app.route('/perfil_editado', methods=['GET', 'POST'])
+def perfil_editado():
+
+    cpf = request.form.get("cpf")
+
+    novo_nome = request.form.get("novo_nome")  #Pega o novo nome enviado pelo usuário
+    novo_cpf = request.form.get("novo_cpf")
+    novo_endereco = request.form.get("novo_endereco")
+    nova_senha = request.form.get("nova_senha")
+
+    usuario = Usuario.query.get(cpf)  #Busca um usuário pelo email do usuário
+
+    Usuario.nome = novo_nome  # Atualiza o nome
+    Usuario.cpf = novo_cpf
+    Usuario.endereco = novo_endereco
+    Usuario.senha = nova_senha
+    
+    db.session.commit()  # Salva a alteração no banco de dados
+    
+    return render_template('perfil_usuario.html',usuario=usuario)
+
+@app.route("/deletar_usuario", methods = ["get", "post"])
+def deletar_usuario():
+    return render_template("deletar_usuario.html")
+
+@app.route("/usuario_deletado", methods=["get", "post"])
+def usuario_deletado():
+    email = request.form.get("email")
+    usuario = Usuario.query.filter_by(email=email).first()  # Busca um usuário pelo email
+
+    db.session.delete(usuario)  # Deleta o usuário
+    db.session.commit()  # Confirma a exclusão no banco de dados
+    return render_template("usuario_deletado.html", email=email)

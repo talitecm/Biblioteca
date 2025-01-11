@@ -13,3 +13,6 @@ class Usuario(db.Model, UserMixin):
 
     def get_id(self): #Função para pegar o identificador do usuário (necessário para login)
         return self.email
+
+    def get_cpf(self):
+        return self.cpf

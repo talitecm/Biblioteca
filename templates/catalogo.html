@@ -4,22 +4,23 @@
 <div class="container-catalogo">
     <h1>Catálogo de Livros</h1>
 
-    <!-- Lista de livros -->
+        <!-- Lista de livros -->
     <div id="livros-lista" class="livros-lista">
         {% for livro in livros %}
-        <div class="livro-item">
-            <h3>{{ livro.titulo }}</h3>
-            <p><strong>Autor:</strong> {{ livro.autor }}</p>
-            <p><strong>Ano de Lançamento:</strong> {{ livro.ano_lancamento }}</p>
-            <p><strong>ISBN:</strong> {{ livro.isbn }}</p>
-
+        <div class="livro-item-container">
+            <div class="livro-info">
+                <h3>{{ livro.titulo }}</h3>
+                <p><strong>Autor:</strong> {{ livro.autor }}</p>
+                <p><strong>Ano de Lançamento:</strong> {{ livro.ano_lancamento }}</p>
+                <p><strong>ISBN:</strong> {{ livro.isbn }}</p>
+            </div>
             <div class="livro-botoes">
                 <button class="btn-editar" data-id="{{ livro.idlivro }}" onclick="editarLivro(this)">Editar</button>
                 <button class="btn-alugar" data-id="{{ livro.idlivro }}" onclick="alugarLivro(this)">Alugar</button>
                 <a href="{{ url_for('excluir_livro', id=livro.idlivro) }}">
                     <button class="btn-excluir" data-id="{{ livro.idlivro }}" onclick="excluirLivro(this)">Excluir</button>
                 </a>
-           </div>
+            </div>
         </div>
         {% endfor %}
     </div>

@@ -2,26 +2,26 @@
 {% block conteudo %}
 <div class="edit-profile-container">
     <h2>Editar Perfil</h2>
-    <form action="/editar_perfil" method="POST" class="form-edit-profile">
-        <!-- Nome -->
-        <label for="nome" class="label-edit">Nome:</label>
-        <input type="text" id="nome" name="nome" class="input-edit" placeholder="Digite seu nome completo" required>
-        
+    <form action="/perfil_editado" class="form-edit-profile" method="POST">
         <!-- E-mail -->
-        <label for="email" class="label-edit">E-mail:</label>
-        <input type="email" id="email" name="email" class="input-edit" placeholder="Digite seu e-mail" required>
+        <label for="" class="label-edit">E-mail atual</label>
+        <input type="text" id="email" name="cpf" class="input-edit" placeholder="Digite seu e-mail" required>
+
+        <!-- Nome -->
+        <label for="" class="label-edit">Editar nome:</label>
+        <input type="text" id="nome" name="novo_nome" class="input-edit" placeholder="Digite seu nome completo" required>
         
         <!-- CPF -->
-        <label for="cpf" class="label-edit">CPF:</label>
-        <input type="text" id="cpf" name="cpf" class="input-edit" placeholder="Digite seu CPF" required>
+        <label for="" class="label-edit">Editar CPF:</label>
+        <input type="text" id="cpf" name="novo_cpf" class="input-edit" placeholder="Digite seu CPF" required>
         
         <!-- Endereço -->
-        <label for="endereco" class="label-edit">Endereço:</label>
-        <input type="text" id="endereco" name="endereco" class="input-edit" placeholder="Digite seu endereço" required>
+        <label for="" class="label-edit">Atualizar endereço:</label>
+        <input type="text" id="endereco" name="novo_endereco" class="input-edit" placeholder="Digite seu endereço" required>
         
         <!-- Senha -->
-        <label for="senha" class="label-edit">Senha:</label>
-        <input type="password" id="senha" name="senha" class="input-edit" placeholder="Crie uma nova senha" required>
+        <label for="" class="label-edit">Nova senha:</label>
+        <input type="password" id="senha" name="nova_senha" class="input-edit" placeholder="Crie uma nova senha" required>
         
         <!-- Botão Atualizar -->
         <button type="submit" class="btn-update">Atualizar</button>

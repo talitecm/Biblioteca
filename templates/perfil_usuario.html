@@ -12,8 +12,7 @@
         <h2>Informações Pessoais</h2>
         <p><strong>Nome completo:</strong> {{ current_user.nome }}</p>
         <p><strong>CPF:</strong> {{ current_user.cpf }}</p>
-        <p><strong>Usuário:</strong> {{ current_user.email }}</p>
-        <p><strong>Senha:</strong> {{ current_user.senha }}</p>
+        <p><strong>Usuário:</strong> {{ current_user.nome }}</p>
         <p><strong>E-mail:</strong> {{ current_user.email }}</p>
         <p><strong>Endereço:</strong> {{ current_user.endereco }}</p>
     </div>
@@ -21,7 +20,7 @@
     <!-- Ações -->
     <div class="profile-actions">
         <button class="btn-action" onclick="window.location.href='/editar_perfil'">Editar Perfil</button>
-        <button class="btn-action logout" onclick="window.location.href='/home'">Excluir Perfil</button>
+        <button class="btn-action logout" onclick="window.location.href='/deletar_usuario'">Excluir Perfil</button>
     </div>
 </div>
 {% endblock %}

@@ -651,7 +651,6 @@ h1 {
     border-radius: 5px;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .btn-update:hover {
@@ -676,89 +675,61 @@ h1 {
 .livros-lista {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1rem; /* Espaçamento entre os itens */
 }
 
-.layout-lista .livros-lista {
-    display: block; /* Exibe a lista de livros como uma lista simples */
-}
-
-.layout-quadrado .livros-lista {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Disposição em grid */
-    gap: 20px;
-}
-
-/* Estilo para os itens da lista (livros) */
-.livro-item {
-    display: grid;
-    justify-content: space-around;
-    flex-direction: row;
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.livro-item:hover {
-    transform: scale(1.05);
-}
-
-.livro-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.livro-item p {
-    margin: 5px 0;
-}
-
-/* Estilo para os botões dentro de cada item de livro */
-.livro-botoes {
+.livro-item-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.livro-botoes button {
-    padding: 10px;
-    font-size: 1rem;
-    cursor: pointer;
+.livro-info {
+    max-width: 70%; /* Limita a largura do texto */
+}
+
+.livro-botoes {
+    display: flex;
+    gap: 0.5rem; /* Espaçamento entre os botões */
+}
+
+button {
+    padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.livro-botoes button:hover {
-    background-color: #ddd;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 .btn-editar {
-    background-color: #4CAF50;
+    background-color: #3498db;
     color: white;
 }
 
 .btn-editar:hover {
-    background-color: #45a049;
+    background-color: #2980b9;
 }
 
 .btn-alugar {
-    background-color: #ff9800;
+    background-color: #2ecc71;
     color: white;
 }
 
 .btn-alugar:hover {
-    background-color: #e68900;
+    background-color: #27ae60;
 }
 
 .btn-excluir {
-    background-color: #f44336;
+    background-color: #e74c3c;
     color: white;
 }
 
 .btn-excluir:hover {
-    background-color: #e53935;
+    background-color: #c0392b;
 }
 
 /* Estilo para o botão de alternar layout no cantinho */
@@ -781,21 +752,97 @@ h1 {
     background-color: #0056b3;
 }
 
-/* ------------------ Estilos para o Layout de Lista ------------------ */
-/* Layout de lista - Exibe os itens como blocos simples */
-.layout-lista .livros-lista {
-    display: block; /* Faz cada item ocupar a largura inteira */
-
-    .livro
-}
-
 /* ------------------ Estilos para o Layout de Quadrados ------------------ */
-/* Layout de quadrados - Exibe os itens em forma de grid */
-.layout-quadrado .livros-lista {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+
+/* Estilos para a lista de livros */
+.layout-quadrado .container-catalogo {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
+
+.layout-quadrado h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.layout-quadrado {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha */
+    gap: 1rem; /* Espaçamento entre os quadrados */
+}
+
+.layout-quadrado .livro-item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    width: 320px; /* Largura fixa para formar quadrados */
+    height: 250px; /* Altura fixa para formar quadrados */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centraliza o texto */
+    margin: 0.5rem; /* Adiciona espaçamento entre os quadrados */
+    transition: 0.3s ease; 
+}
+
+.layout-quadrado .livro-item-container:hover {
+    transform: scale(1.05); /* Aumenta 5% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Intensifica a sombra */
+}
+
+.layout-quadrado .livro-info {
+    flex-grow: 1;
+    display: table-column;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem; /* Espaçamento entre os textos */
+}
+
+.layout-quadrado .livro-botoes {
+    display: flex;
+    gap: 0.5rem; /* Espaçamento entre os botões */
+}
+
+.layout-quadrado button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.layout-quadrado .btn-editar {
+    background-color: #3498db;
+    color: white;
+}
+
+.layout-quadrado .btn-editar:hover {
+    background-color: #2980b9;
+}
+
+.layout-quadrado .btn-alugar {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.layout-quadrado .btn-alugar:hover {
+    background-color: #27ae60;
+}
+
+.layout-quadrado .btn-excluir {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.layout-quadrado .btn-excluir:hover {
+    background-color: #c0392b;
+}
+
 
 /* Botão de alternância entre os layouts */
 .btn-trocar-layout {
@@ -805,10 +852,12 @@ h1 {
     font-size: 14px;
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .btn-trocar-layout:hover {
     background-color: #3498db;
 }
+
+
+
 
