@@ -1,4 +1,36 @@
 {%extends 'base-login.html'%}
 {% block conteudo %}
 <!-- Inserir conteúdo aqui-->
+<main>
+    <section class="contact-section">
+        <h1>Contato</h1>
+        <p>Para entrar em contato conosco, preencha os dados abaixo, será um prazer conversar com você.</p>
+
+        <div class="contact-container">
+            <form class="contact-form" method="post">
+                <h2>Fale conosco</h2>
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" placeholder="Digite seu nome" value="" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" value="" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Digite sua mensagem" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar</button>
+            </form>
+
+            <div class="contact-info">
+                <h2>Informações de Contato</h2>
+                <p><strong>Endereço:</strong> Rua Exemplo, 123, Cidade - Estado</p>
+                <p><strong>Telefone:</strong> (00) 1234-5678</p>
+                <p><strong>E-mail:</strong> contato@exemplo.com</p>
+            </div>
+        </div>
+    </section>
+</main>
 {% endblock %}
